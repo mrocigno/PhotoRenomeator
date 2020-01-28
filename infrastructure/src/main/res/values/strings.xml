@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Infrastructure</string>
+    <string name="base_url">123</string>
+</resources>
