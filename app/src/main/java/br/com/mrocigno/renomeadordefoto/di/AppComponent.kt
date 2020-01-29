@@ -1,6 +1,7 @@
 package br.com.mrocigno.renomeadordefoto.di
 
 import br.com.mrocigno.data.di.DataModules
+import br.com.mrocigno.domain.di.DomainModules
 import org.koin.core.module.Module
 
 object AppComponent {
@@ -9,7 +10,11 @@ object AppComponent {
         return listOf(
             AppModules.viewModels,
 
-            DataModules.databaseModules
+            DataModules.databaseModules,
+            DataModules.datasourceModule,
+            DataModules.repositoryModule,
+
+            DomainModules.useCaseModule
         )
     }
 

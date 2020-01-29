@@ -28,25 +28,33 @@ class ReadGuides : Service(){
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         GlobalScope.launch {
             readData()
-            dao.add(Guide(null,"Teste"))
-            Log.d("DEBUG TEST", "${dao.listAll()}")
+            applicationContext.sendBroadcast(Intent(READ_GUIDES_FILTER))
         }
         return START_NOT_STICKY
 
     }
 
-    private fun readData() {
+    private suspend fun readData() {
         val csvFolder = File(Constants.csvFolder)
         if(csvFolder.exists() && csvFolder.isDirectory){
             csvFolder.listFiles()?.forEach {
                 val reader = BufferedReader(InputStreamReader(it.inputStream(), Charset.forName("UTF-8")))
+                reader.readLine() // Jump first line
+
+                val guide = arrayListOf<Guide>()
                 var line = reader.readLine()
                 while(line != null){
-                    Log.d("DEBUG TEST", line)
+                    guide.add(Guide.parseCsv(line))
                     line = reader.readLine()
                 }
+
+                dao.insertMany(guide)
             }
         }
+    }
+
+    companion object {
+        const val READ_GUIDES_FILTER = "ReadGuidesAction"
     }
 
 }
