@@ -5,6 +5,7 @@ import br.com.mrocigno.data.datasource.GuideDataSource
 import br.com.mrocigno.data.datasource.GuideDataSourceImpl
 import br.com.mrocigno.data.db.AppDatabase
 import br.com.mrocigno.data.db.dao.GuidesDao
+import br.com.mrocigno.data.mapper.GuideMapper
 import br.com.mrocigno.data.repository.GuideRepositoryImpl
 import br.com.mrocigno.domain.repository.GuideRepository
 import org.koin.core.qualifier.named
@@ -28,9 +29,20 @@ object DataModules {
         single<GuideRepository> { GuideRepositoryImpl(get()) }
     }
 
-    val datasourceModule = module {
-        single(named(GUIDE_DATA_SOURCE)) { GuideDataSourceImpl(get()) }
+    val dataSourceModule = module {
+        single(named(GUIDE_DATA_SOURCE)) {
+            GuideDataSourceImpl(
+                get(),
+                get(named(GUIDE_MAPPER_FROM_DATA))
+            )
+        }
         single<GuideDataSource.Local> { get(named(GUIDE_DATA_SOURCE)) }
+    }
+
+    private const val GUIDE_MAPPER_FROM_DATA = "GuideMapper.FromData"
+
+    val mapperModule = module {
+        single(named(GUIDE_MAPPER_FROM_DATA)) { GuideMapper.FromData() }
     }
 
 }

@@ -1,9 +1,8 @@
 package br.com.mrocigno.domain.entity
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import java.io.Serializable
 
-@Entity(tableName = "guides")
+
 data class Guide(
     val name : String = "",
     val type : String = "",
@@ -30,7 +29,6 @@ data class Guide(
     val serviceDescription : String = "",
     val serviceType : String = "",
     val rc : String = "",
-    @PrimaryKey(autoGenerate = false)
     val fc : Int = 0,
     val pg : String = "",
     val receiveDate: String = "",
@@ -40,51 +38,4 @@ data class Guide(
     val polo : String = "",
     val poloDescription: String = "",
     val month : String = ""
-) {
-    companion object {
-
-        fun parseCsv(csvLine : String) : Guide {
-            val splited = csvLine.split(",")
-            if(splited.isNotEmpty() && splited.size == 52) {
-                return Guide(
-                    splited[0],
-                    splited[1],
-                    splited[2],
-                    splited[3],
-                    splited[4],
-                    splited[5],
-                    splited[6],
-                    splited[7],
-                    splited[8],
-                    splited[9],
-                    splited[10],
-                    splited[11],
-                    splited[12],
-                    splited[13],
-                    splited[14],
-                    splited[15],
-                    splited[16],
-                    splited[17],
-                    splited[18],
-                    splited[19],
-                    splited[20],
-                    splited[21],
-                    splited[22],
-                    splited[23],
-                    splited[24],
-                    splited[25].toInt(),
-                    splited[30],
-                    splited[31],
-                    splited[32].toInt(),
-                    splited[33],
-                    splited[34],
-                    splited[35],
-                    splited[36],
-                    splited[37]
-                )
-            }
-            return Guide()
-        }
-
-    }
-}
+) : Serializable

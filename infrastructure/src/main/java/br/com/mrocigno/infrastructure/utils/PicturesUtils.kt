@@ -24,7 +24,7 @@ class PicturesUtils {
             bitmap?.let {
                 val outStream = FileOutputStream(File(path))
                 it.compress(Bitmap.CompressFormat.JPEG, compressor, outStream)
-                it.recycle()
+//                it.recycle()
                 outStream.flush()
                 outStream.close()
             }

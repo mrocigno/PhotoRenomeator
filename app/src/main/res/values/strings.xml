@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Renomeador de foto</string>
+    <string name="servicos">Serviços</string>
+    <string name="logradouro">%1$s, %2$s %3$s</string>
 </resources>

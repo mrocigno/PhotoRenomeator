@@ -11,8 +11,9 @@ object AppComponent {
             AppModules.viewModels,
 
             DataModules.databaseModules,
-            DataModules.datasourceModule,
+            DataModules.dataSourceModule,
             DataModules.repositoryModule,
+            DataModules.mapperModule,
 
             DomainModules.useCaseModule
         )
