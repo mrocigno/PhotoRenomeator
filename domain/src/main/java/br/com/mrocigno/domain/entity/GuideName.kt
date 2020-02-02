@@ -2,7 +2,7 @@ package br.com.mrocigno.domain.entity
 
 import java.io.Serializable
 
-class GuideName(
+data class GuideName(
     val fc: Int = 0,
     val guide: String = "",
     val name: String = "",

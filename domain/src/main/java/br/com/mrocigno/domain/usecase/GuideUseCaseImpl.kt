@@ -1,6 +1,5 @@
 package br.com.mrocigno.domain.usecase
 
-import br.com.mrocigno.domain.entity.Guide
 import br.com.mrocigno.domain.entity.GuideName
 import br.com.mrocigno.domain.repository.GuideRepository
 

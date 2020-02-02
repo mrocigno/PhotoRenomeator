@@ -16,6 +16,16 @@ buildscript {
         glide_version = '4.9.0'
         room_version = "2.2.3"
         exif_version = "1.1.0"
+
+        // Testing libraries
+        robolectric_version = '4.3'
+        junit_version = '4.12'
+        junit_test_version = '1.1.1'
+        espresso_core_version = '3.2.0'
+        mockk_version = '1.9.3'
+        mockito_version = '2.19.0'
+        mockito_kotlin_version = '2.0.0-RC1'
+        arch_core_testing_version = '2.0.0-rc01'
     }
 
     repositories {
