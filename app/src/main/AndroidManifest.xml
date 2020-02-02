@@ -33,6 +33,10 @@
 
         <activity android:name=".ui.main.MainActivity"/>
 
+        <activity android:name=".ui.guide.GuideActivity"/>
+
+        <activity android:name=".ui.service.ServiceActivity"/>
+
         <provider
             android:authorities="${applicationId}.provider"
             android:name="androidx.core.content.FileProvider"

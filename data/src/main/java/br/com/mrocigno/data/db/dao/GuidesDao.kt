@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import br.com.mrocigno.data.data.GuideData
 import br.com.mrocigno.domain.entity.Guide
 import br.com.mrocigno.domain.entity.GuideList
 
@@ -11,15 +12,18 @@ import br.com.mrocigno.domain.entity.GuideList
 interface GuidesDao {
 
     @Query("SELECT * FROM guides")
-    suspend fun listAll() : List<Guide>
+    suspend fun listAll() : List<GuideData>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertOne(guide: Guide)
+    suspend fun insertOne(guide: GuideData)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertMany(list : List<Guide>)
+    suspend fun insertMany(list : List<GuideData>)
 
     @Query("SELECT guide, count(*) as countDo, 0 as countNotDo FROM guides GROUP BY guide")
     suspend fun listGuidesName() : List<GuideList>
+
+    @Query("SELECT * FROM guides WHERE guide = :name")
+    suspend fun listServicesByGuideName(name: String) : List<GuideData>
 
 }

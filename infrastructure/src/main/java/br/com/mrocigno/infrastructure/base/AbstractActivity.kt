@@ -8,8 +8,9 @@ import androidx.databinding.ViewDataBinding
 abstract class AbstractActivity<B : ViewDataBinding> : AppCompatActivity() {
 
     abstract val layoutId : Int
-    abstract fun initVars(binder : B)
     abstract val abstractViewModel : AbstractViewModel
+    abstract fun initVars(binder : B)
+    abstract fun initActions()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,6 +19,7 @@ abstract class AbstractActivity<B : ViewDataBinding> : AppCompatActivity() {
         initVars(binding)
 
         lifecycle.addObserver(abstractViewModel)
+        initActions()
     }
 
 }
