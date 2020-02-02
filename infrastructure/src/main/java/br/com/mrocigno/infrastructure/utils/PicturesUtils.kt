@@ -2,33 +2,54 @@ package br.com.mrocigno.infrastructure.utils
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.Matrix
-import androidx.exifinterface.media.ExifInterface
 import java.io.File
 import java.io.FileOutputStream
+import kotlin.math.min
 
 class PicturesUtils {
 
     companion object {
 
-        fun getFileAsBitmap(path : String) : Bitmap? {
+        fun getBitmapFile(path : String) : Bitmap? {
             return BitmapFactory.decodeFile(path)
         }
 
-        fun getCompressedBitmapFile(path: String, compressor: Int = 80, fixOrientation: Boolean = true): Bitmap? {
+        fun compressFile(path: String, compressor: Int = 80, fixOrientation: Boolean = true){
             val bitmap = if(fixOrientation) {
-                getFileAsBitmap(path)?.rotateBitmap(path)
+                getBitmapFile(path)?.rotateBitmap(path)
             } else {
-                getFileAsBitmap(path)
+                getBitmapFile(path)
             }
             bitmap?.let {
                 val outStream = FileOutputStream(File(path))
                 it.compress(Bitmap.CompressFormat.JPEG, compressor, outStream)
-//                it.recycle()
+                it.recycle()
                 outStream.flush()
                 outStream.close()
             }
-            return bitmap
+        }
+
+
+        fun getResizedBitmapFile(path: String, targetWidth: Int, targetHeight: Int): Bitmap? {
+            val options = BitmapFactory.Options().apply {
+                inJustDecodeBounds = true
+                BitmapFactory.decodeFile(path, this)
+            }
+
+            val photoW = options.outWidth
+            val photoH = options.outHeight
+
+            val reductionScale = min(photoW / targetWidth, photoH / targetHeight)
+
+            return options.run {
+                inJustDecodeBounds = false
+                inSampleSize = reductionScale
+
+                BitmapFactory.decodeFile(
+                    path,
+                    this
+                )
+            }
         }
 
     }

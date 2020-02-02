@@ -1,32 +1,24 @@
 package br.com.mrocigno.renomeadordefoto.ui.main
 
-import android.app.Activity
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.os.Bundle
-import android.provider.MediaStore
-import android.util.Log
-import android.widget.Toast
-import androidx.core.content.FileProvider
+import android.graphics.ColorFilter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.mrocigno.domain.entity.GuideList
 import br.com.mrocigno.infrastructure.base.AbstractActivity
 import br.com.mrocigno.infrastructure.base.AbstractViewModel
-import br.com.mrocigno.infrastructure.utils.PermissionsUtils
-import br.com.mrocigno.infrastructure.utils.PicturesUtils.Companion.getCompressedBitmapFile
 import br.com.mrocigno.infrastructure.utils.bind
-import br.com.mrocigno.renomeadordefoto.BuildConfig
 import br.com.mrocigno.renomeadordefoto.R
 import br.com.mrocigno.renomeadordefoto.databinding.ActivityMainBinding
 import br.com.mrocigno.renomeadordefoto.services.ReadGuides
 import br.com.mrocigno.renomeadordefoto.ui.guide.GuideActivity
 import br.com.mrocigno.renomeadordefoto.ui.main.adapter.MainAdapter
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.io.File
 
 
 class MainActivity : AbstractActivity<ActivityMainBinding>() {

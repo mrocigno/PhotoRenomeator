@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import br.com.mrocigno.domain.Constants
 import br.com.mrocigno.infrastructure.utils.PermissionsUtils
-import br.com.mrocigno.infrastructure.utils.PicturesUtils
 import br.com.mrocigno.renomeadordefoto.services.ReadGuides
 import br.com.mrocigno.renomeadordefoto.ui.main.MainActivity
 
@@ -21,8 +20,8 @@ class SplashActivity : AppCompatActivity() {
             PermissionsUtils.requestStoragePermission(this)
         } else {
             val externalStorage = System.getenv("EXTERNAL_STORAGE")
-            PermissionsUtils.criarDiretorio(Constants.csvFolder)
-            PermissionsUtils.criarDiretorio(Constants.photosFolder)
+            PermissionsUtils.mkdir(Constants.csvFolder)
+            PermissionsUtils.mkdir(Constants.photosFolder)
 
             startService(Intent(this, ReadGuides::class.java))
             startActivity(Intent(this, MainActivity::class.java))

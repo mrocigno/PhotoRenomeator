@@ -12,9 +12,12 @@ import br.com.mrocigno.renomeadordefoto.databinding.ActivityGuideBinding
 import br.com.mrocigno.renomeadordefoto.ui.guide.adapter.GuideAdapter
 import br.com.mrocigno.renomeadordefoto.ui.service.ServiceActivity
 import kotlinx.android.synthetic.main.activity_guide.*
+import org.koin.android.ext.android.bind
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class GuideActivity : AbstractActivity<ActivityGuideBinding>() {
+
+    private var guideName = ""
 
     override val layoutId: Int get() = R.layout.activity_guide
 
@@ -26,7 +29,7 @@ class GuideActivity : AbstractActivity<ActivityGuideBinding>() {
 
     override fun initActions() {
         intent.getStringExtra(GUIDE_NAME)?.run {
-            guideViewModel.getServices(this)
+            guideName = this
         }
         bind(guideViewModel.list) {
             rcyServices.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
@@ -36,6 +39,11 @@ class GuideActivity : AbstractActivity<ActivityGuideBinding>() {
                 startActivity(intent)
             }
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        guideViewModel.getServices(guideName)
     }
 
     companion object {

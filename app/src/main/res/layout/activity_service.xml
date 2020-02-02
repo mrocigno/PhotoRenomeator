@@ -4,149 +4,220 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <import type="android.view.View"/>
         <variable
             name="serviceViewModel"
             type="br.com.mrocigno.renomeadordefoto.ui.service.ServiceViewModel" />
     </data>
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <LinearLayout
-                android:id="@+id/linearLayout"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:padding="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cardSelect1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:foreground="?selectableItemBackground"
-                    app:cardCornerRadius="20dp"
-                    app:cardElevation="2dp">
-
-                    <ImageView
-                        bitmap="@{serviceViewModel.photo1}"
-                        android:layout_width="141dp"
-                        android:layout_height="201dp"
-                        android:foreground="@drawable/photo_selector_background"
-                        android:scaleType="centerCrop"
-                        tools:srcCompat="@tools:sample/avatars" />
-
-                </com.google.android.material.card.MaterialCardView>
-
-                <View
+                <LinearLayout
+                    android:id="@+id/linearLayout"
                     android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cardSelect2"
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:foreground="?selectableItemBackground"
-                    app:cardCornerRadius="20dp"
-                    app:cardElevation="2dp">
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                    <ImageView
-                        bitmap="@{serviceViewModel.photo2}"
-                        android:layout_width="141dp"
-                        android:layout_height="201dp"
-                        android:foreground="@drawable/photo_selector_background"
-                        android:scaleType="centerCrop"
-                        tools:srcCompat="@tools:sample/avatars" />
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardSelect1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:foreground="?selectableItemBackground"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="2dp">
 
-                </com.google.android.material.card.MaterialCardView>
-            </LinearLayout>
+                        <ImageView
+                            bitmap="@{serviceViewModel.photo1}"
+                            android:layout_width="141dp"
+                            android:layout_height="201dp"
+                            android:foreground="@drawable/photo_selector_background"
+                            android:scaleType="centerCrop"
+                            tools:srcCompat="@tools:sample/avatars" />
 
-            <LinearLayout
-                android:id="@+id/linearLayout2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:padding="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+                        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                            android:id="@+id/fabDel1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX=".6"
+                            android:scaleY=".6"
+                            android:visibility="@{serviceViewModel.photo1 == null? View.GONE : View.VISIBLE}"
+                            android:clickable="true"
+                            android:layout_gravity="end|bottom"
+                            app:backgroundTint="@color/red"
+                            android:tint="@android:color/white"
+                            app:srcCompat="@drawable/ic_close" />
 
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cardSelect3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:foreground="?selectableItemBackground"
-                    app:cardCornerRadius="20dp"
-                    app:cardElevation="2dp">
+                    </com.google.android.material.card.MaterialCardView>
 
-                    <ImageView
-                        bitmap="@{serviceViewModel.photo3}"
-                        android:layout_width="141dp"
-                        android:layout_height="201dp"
-                        android:foreground="@drawable/photo_selector_background"
-                        android:scaleType="centerCrop"
-                        tools:srcCompat="@tools:sample/avatars" />
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
 
-                </com.google.android.material.card.MaterialCardView>
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardSelect2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:foreground="?selectableItemBackground"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="2dp">
 
-                <View
+                        <ImageView
+                            bitmap="@{serviceViewModel.photo2}"
+                            android:layout_width="141dp"
+                            android:layout_height="201dp"
+                            android:foreground="@drawable/photo_selector_background"
+                            android:scaleType="centerCrop"
+                            tools:srcCompat="@tools:sample/avatars" />
+
+                        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                            android:id="@+id/fabDel2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX=".6"
+                            android:scaleY=".6"
+                            android:visibility="@{serviceViewModel.photo2 == null? View.GONE : View.VISIBLE}"
+                            android:clickable="true"
+                            android:layout_gravity="end|bottom"
+                            app:backgroundTint="@color/red"
+                            android:tint="@android:color/white"
+                            app:srcCompat="@drawable/ic_close" />
+
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayout2"
                     android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardSelect3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:foreground="?selectableItemBackground"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="2dp">
+
+                        <ImageView
+                            bitmap="@{serviceViewModel.photo3}"
+                            android:layout_width="141dp"
+                            android:layout_height="201dp"
+                            android:foreground="@drawable/photo_selector_background"
+                            android:scaleType="centerCrop"
+                            tools:srcCompat="@tools:sample/avatars" />
+
+                        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                            android:id="@+id/fabDel3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX=".6"
+                            android:scaleY=".6"
+                            android:visibility="@{serviceViewModel.photo3 == null? View.GONE : View.VISIBLE}"
+                            android:clickable="true"
+                            android:layout_gravity="end|bottom"
+                            app:backgroundTint="@color/red"
+                            android:tint="@android:color/white"
+                            app:srcCompat="@drawable/ic_close" />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardSelect4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:foreground="?selectableItemBackground"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="2dp">
+
+                        <ImageView
+                            bitmap="@{serviceViewModel.photo4}"
+                            android:layout_width="141dp"
+                            android:layout_height="201dp"
+                            android:foreground="@drawable/photo_selector_background"
+                            android:scaleType="centerCrop"
+                            tools:srcCompat="@tools:sample/avatars" />
+
+                        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                            android:id="@+id/fabDel4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX=".6"
+                            android:scaleY=".6"
+                            android:visibility="@{serviceViewModel.photo4 == null? View.GONE : View.VISIBLE}"
+                            android:clickable="true"
+                            android:layout_gravity="end|bottom"
+                            app:backgroundTint="@color/red"
+                            android:tint="@android:color/white"
+                            app:srcCompat="@drawable/ic_close" />
+
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cardSelect4"
+                    android:id="@+id/cardSelect5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
                     android:foreground="?selectableItemBackground"
                     app:cardCornerRadius="20dp"
-                    app:cardElevation="2dp">
+                    app:cardElevation="2dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
                     <ImageView
-                        bitmap="@{serviceViewModel.photo4}"
+                        bitmap="@{serviceViewModel.photo5}"
                         android:layout_width="141dp"
                         android:layout_height="201dp"
                         android:foreground="@drawable/photo_selector_background"
                         android:scaleType="centerCrop"
                         tools:srcCompat="@tools:sample/avatars" />
 
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/fabDel5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:scaleX=".6"
+                        android:scaleY=".6"
+                        android:visibility="@{serviceViewModel.photo5 == null? View.GONE : View.VISIBLE}"
+                        android:clickable="true"
+                        android:layout_gravity="end|bottom"
+                        app:backgroundTint="@color/red"
+                        android:tint="@android:color/white"
+                        app:srcCompat="@drawable/ic_close" />
+
                 </com.google.android.material.card.MaterialCardView>
-            </LinearLayout>
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardSelect5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:foreground="?selectableItemBackground"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="2dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <ImageView
-                    bitmap="@{serviceViewModel.photo5}"
-                    android:layout_width="141dp"
-                    android:layout_height="201dp"
-                    android:foreground="@drawable/photo_selector_background"
-                    android:scaleType="centerCrop"
-                    tools:srcCompat="@tools:sample/avatars" />
+        </androidx.core.widget.NestedScrollView>
 
-            </com.google.android.material.card.MaterialCardView>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

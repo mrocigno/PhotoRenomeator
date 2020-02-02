@@ -1,6 +1,7 @@
 package br.com.mrocigno.data.data
 
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "guides")

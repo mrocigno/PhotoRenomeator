@@ -12,7 +12,7 @@ object AppModules {
     val viewModels = module {
         viewModel { MainViewModel(get()) }
         viewModel { GuideViewModel(get()) }
-        viewModel { ServiceViewModel() }
+        viewModel { ServiceViewModel(get()) }
     }
 
 }

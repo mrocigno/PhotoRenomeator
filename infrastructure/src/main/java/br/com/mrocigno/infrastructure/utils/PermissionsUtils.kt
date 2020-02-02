@@ -10,10 +10,10 @@ import java.io.File
 class PermissionsUtils {
 
     companion object {
-        fun criarDiretorio(local: String) {
-            val diretorio = File(local)
-            if (!diretorio.exists()) {
-                diretorio.mkdirs()
+        fun mkdir(local: String) {
+            val dir = File(local)
+            if (!dir.exists()) {
+                dir.mkdirs()
             }
         }
 
